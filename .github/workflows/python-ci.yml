@@ -41,9 +41,12 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git fetch origin main  # au cas où main n’est pas local
-          git checkout main
+          git fetch --all
+
+          git checkout -B main origin/main
+
           git merge --ff-only origin/dev
+    
           git push https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git HEAD:main
 
       - name: Handle failure
