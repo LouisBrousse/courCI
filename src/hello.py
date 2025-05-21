@@ -2,6 +2,6 @@
 def main():
     print("Hello World")
 
-    print("This is a test of the CI/CD pipeline.")
+    print("This is a test of the CI/CD pipeline 2.")
 if __name__ == "__main__":
     main()
