@@ -55,7 +55,16 @@ jobs:
           git fetch origin
           git checkout dev
           TIMESTAMP=$(date +%s)
-          git branch failures/$TIMESTAMP
-          git checkout failures/$TIMESTAMP
-          git reset --hard HEAD@{1}
+
+          # Sauvegarder le commit fautif
+          BAD_COMMIT=$(git rev-parse origin/dev)
+
+          # Revenir à l'avant-dernier commit (1 commit avant le dernier sur dev)
+          git reset --hard HEAD~1
+
+          # Pousser la correction sur dev
+          git push https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git dev --force
+
+          # Créer une branche pour le commit fautif
+          git checkout -b failures/$TIMESTAMP $BAD_COMMIT
           git push https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git failures/$TIMESTAMP
