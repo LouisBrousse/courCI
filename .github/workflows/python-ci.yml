@@ -45,6 +45,7 @@ jobs:
         if: success()
         run: |
           git fetch origin
+          git rebase origin/main
           git checkout main
           git merge --ff-only origin/dev
           git push https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git main
