@@ -26,32 +26,44 @@ jobs:
         run: |
           pytest
 
-  handle-success-or-failure:
+  handle-success:
     needs: build-and-test
+    if: success()
     runs-on: ubuntu-latest
-    if: always()
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 
-      
+
       - name: Set up Git
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-      - name: Handle success
-        if: success()
+      - name: Fast-forward merge to main
         run: |
           git fetch origin
-          git rebase origin/main
           git checkout main
           git merge --ff-only origin/dev
           git push https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git main
 
+  handle-failure:
+    needs: build-and-test
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
       - name: Handle failure – reset and branch off
-        if: failure()
         run: |
           git fetch origin
           git checkout dev
