@@ -7,3 +7,5 @@ groupe: Barbot Aymeric, Brousse Louis, Vitry Marie-Ornella, Vidal Samuel
 GitHub Actions est un outil d'intégration continue léger, directement intégré à GitHub, le client utilisé pour ce projet.
 Son usage est plus pertinent que celui d’outils lourds comme Jenkins, dont la complexité serait injustifiée ici.
 Bien que gratuit et soumis à certaines limites (VM partagées, 2 000 minutes par mois, écriture manuelle des fichiers de workflow en YAML), GitHub Actions reste largement suffisant pour automatiser les tests et tâches nécessaires.
+
+Difficultés rencontrées : Dans Github Actions, le workflow est présent dans le projet sous forme de fichier YAML, ce qui pollue l'historique des branches jusqu'à ce que la CI fonctionne.
