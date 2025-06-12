@@ -1,4 +1,6 @@
-class Character:
-    def __init__(self, name: str, hp: int = 10):
-        self.name = name
-        self.hp = hp
+import pytest
+from src.character import Character
+
+def test_default_hp():
+    c = Character("Alice")
+    assert c.hp == 10
