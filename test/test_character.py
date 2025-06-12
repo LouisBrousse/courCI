@@ -9,11 +9,11 @@ def test_character_is_alive_initially():
     hero = Character("Hero")
     assert hero.is_alive
 
-# def test_attack_reduces_target_hp_by_one():
-#     attacker = Character("A")
-#     target = Character("B")
-#     attacker.attack(target)
-#     assert target.hp == 9
+def test_attack_reduces_target_hp_by_one():
+    attacker = Character("A")
+    target = Character("B")
+    attacker.attack(target)
+    assert target.hp == 9
 
 # def test_character_dies_at_zero_hp():
 #     hero = Character("Hero")
