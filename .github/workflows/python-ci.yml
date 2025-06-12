@@ -27,8 +27,8 @@ jobs:
           ruff . --output-format=github
 
       - name: Run tests
-      env:
-        PYTHONPATH: ${{ github.workspace }}/src
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
         run: |
           pytest
 
