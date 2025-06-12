@@ -5,9 +5,9 @@ def test_character_starts_with_10_hp():
     hero = Character("Hero")
     assert hero.hp == 10
 
-# def test_character_is_alive_initially():
-#     hero = Character("Hero")
-#     assert hero.is_alive
+def test_character_is_alive_initially():
+    hero = Character("Hero")
+    assert hero.is_alive
 
 # def test_attack_reduces_target_hp_by_one():
 #     attacker = Character("A")
