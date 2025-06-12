@@ -47,14 +47,15 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-      - name: Fast-forward merge to main
+      - name: Deploy dev to main
         run: |
           git fetch origin
+
+          # (Optionnel) s'assurer qu'on est bien sur dev
           git checkout dev
-          git rebase origin/main
-          git checkout main
-          git merge --ff-only origin/dev
-          git push https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git main
+
+          # Pousse dev sur main en écrasant l'historique de main si besoin
+          git push --force-with-lease https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git dev:main
 
   handle-failure:
     needs: build-and-test
