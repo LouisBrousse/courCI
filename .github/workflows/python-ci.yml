@@ -49,13 +49,13 @@ jobs:
 
       - name: Deploy dev to main
         run: |
-          git fetch origin
+          # On récupère explicitement la branche main pour que la lease soit à jour
+          git fetch origin +refs/heads/main:refs/remotes/origin/main
 
-          # (Optionnel) s'assurer qu'on est bien sur dev
-          git checkout dev
-
-          # Pousse dev sur main en écrasant l'historique de main si besoin
-          git push --force-with-lease https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git dev:main
+          # On pousse dev sur main ; --force-with-lease protège quand même
+          git push --force-with-lease \
+            https://x-access-token:${{ secrets.PAT_COURCI }}@github.com/LouisBrousse/courCI.git \
+            dev:main
 
   handle-failure:
     needs: build-and-test
