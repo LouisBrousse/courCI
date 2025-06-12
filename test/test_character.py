@@ -15,15 +15,15 @@ def test_attack_reduces_target_hp_by_one():
     attacker.attack(target)
     assert target.hp == 9
 
-# def test_character_dies_at_zero_hp():
-#     hero = Character("Hero")
-#     for _ in range(10):
-#         Character("Orc").attack(hero)
-#     assert hero.hp == 0
-#     assert not hero.is_alive
+def test_character_dies_at_zero_hp():
+    hero = Character("Hero")
+    for _ in range(10):
+        Character("Orc").attack(hero)
+    assert hero.hp == 0
+    assert not hero.is_alive
 
-# def test_hp_cannot_go_below_zero():
-#     victim = Character("Victim")
-#     for _ in range(15):
-#         Character("Assassin").attack(victim)
-#     assert victim.hp == 0
+def test_hp_cannot_go_below_zero():
+    victim = Character("Victim")
+    for _ in range(15):
+        Character("Assassin").attack(victim)
+    assert victim.hp == 0
